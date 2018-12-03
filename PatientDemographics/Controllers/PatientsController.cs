@@ -72,7 +72,7 @@ namespace PatientDemographics.Controllers
                     using (var stringReader = new StringReader(patientrecord.Record))
                     {
                         var patient = (Patient)xmlSerializer.Deserialize(stringReader);
-                        return Ok(patient);
+                        return Ok(mapper.Map<Patient, PatientViewModel>(patient));
                     }
                 }
                 else
