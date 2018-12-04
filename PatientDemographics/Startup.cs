@@ -48,6 +48,12 @@ namespace PatientDemographics
                 app.UseDeveloperExceptionPage();
             }
 
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<PatientContext>();
+                context.Database.Migrate();
+            }
+
             AutoMapper.Mapper.Initialize(mapper =>
                 mapper.CreateMap<Patient, PatientViewModel>().ReverseMap()
             );
