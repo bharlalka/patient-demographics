@@ -32,8 +32,8 @@ namespace PatientDemographics
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<PatientContext>(cfg => {
-                cfg.UseInMemoryDatabase("PatientsDb");
-                //cfg.Use(Configuration.GetConnectionString("PatientConnectionString"));
+                //cfg.UseInMemoryDatabase("PatientsDb");
+                cfg.UseSqlServer(Configuration.GetConnectionString("PatientConnectionString"));
             });
 
             services.AddAutoMapper();
